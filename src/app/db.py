@@ -1,6 +1,7 @@
 import os
 
-from sqlalchemy import Column, DateTime, Integer, MetaData, String, Table, create_engine
+from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table,
+                        create_engine)
 from sqlalchemy.sql import func
 
 from databases import Database

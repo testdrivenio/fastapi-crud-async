@@ -23,6 +23,7 @@ async def put(id: int, payload: NoteSchema):
         .update()
         .where(id == notes.c.id)
         .values(title=payload.title, description=payload.description)
+        .returning(notes.c.id)
     )
     return await database.execute(query=query)
 
