@@ -8,7 +8,7 @@ services:
     volumes:
       - ./src/:/usr/src/app/
     ports:
-      - 8002:8000
+      - 8000:8000
     environment:
       - DATABASE_URL=postgresql://hello_fastapi:hello_fastapi@db/hello_fastapi_dev
   db:
