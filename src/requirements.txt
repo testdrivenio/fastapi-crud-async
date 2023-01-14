@@ -1,10 +1,10 @@
-databases[postgresql]==0.6.2
-psycopg2-binary==2.9.5
-SQLAlchemy==1.4.41
 asyncpg==0.27.0
+databases[postgresql]==0.6.2
 fastapi==0.87.0
-uvicorn==0.20.0
+httpx==0.23.1
+psycopg2-binary==2.9.5
 
 # dev
 pytest==7.2.0
-httpx==0.23.1
+SQLAlchemy==1.4.41
+uvicorn==0.20.0
