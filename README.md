@@ -17,3 +17,17 @@ Test out the following routes:
 1. [http://localhost:8002/ping](http://localhost:8002/ping)
 1. [http://localhost:8002/docs](http://localhost:8002/docs)
 1. [http://localhost:8002/notes](http://localhost:8002/notes)
+
+
+## Want to use pre-commit?
+For using the pre-commit, you should go inside of the `src` folder:
+```bash
+    # Create the environment
+    python3 -m venv venv
+
+    # Activate the environment
+    source env/bin/activate
+
+    # Install pre-commit
+    pip3 install pre-commit
+```
