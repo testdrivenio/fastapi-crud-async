@@ -1,20 +1,31 @@
 from app.api.models import NoteSchema
-from app.db import notes, database
+from app.db import notes, async_session
 
 
 async def post(payload: NoteSchema):
     query = notes.insert().values(title=payload.title, description=payload.description)
-    return await database.execute(query=query)
+    
+    with async_session() as db:
+        response = await db.execute(query=query)
+
+    return response 
 
 
 async def get(id: int):
     query = notes.select().where(id == notes.c.id)
-    return await database.fetch_one(query=query)
+
+    with async_session() as db:
+        response = await db.execute(query=query)
+        
+    return response 
 
 
 async def get_all():
     query = notes.select()
-    return await database.fetch_all(query=query)
+    with async_session() as db:
+        response = await db.execute(query=query)
+        
+    return response 
 
 
 async def put(id: int, payload: NoteSchema):
@@ -25,9 +36,17 @@ async def put(id: int, payload: NoteSchema):
         .values(title=payload.title, description=payload.description)
         .returning(notes.c.id)
     )
-    return await database.execute(query=query)
+
+    with async_session() as db:
+        response = await db.execute(query=query)
+        
+    return response 
 
 
 async def delete(id: int):
     query = notes.delete().where(id == notes.c.id)
-    return await database.execute(query=query)
+
+    with async_session() as db:
+        response = await db.execute(query=query)
+        
+    return response 

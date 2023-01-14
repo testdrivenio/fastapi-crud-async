@@ -1,5 +1,7 @@
 import os
 
+import logging
+logger = logging.getLogger(__name__)
 from sqlalchemy import (
     Column,
     DateTime,
@@ -7,16 +9,16 @@ from sqlalchemy import (
     MetaData,
     String,
     Table,
-    create_engine
 )
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.sql import func
 
-from databases import Database
-
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL").replace('postgresql', 'postgresql+asyncpg')
+logger.debug(DATABASE_URL, 'DATABASE_URL')
 
 # SQLAlchemy
-engine = create_engine(DATABASE_URL)
+engine = create_async_engine(DATABASE_URL, echo=True)
 metadata = MetaData()
 notes = Table(
     "notes",
@@ -27,5 +29,7 @@ notes = Table(
     Column("created_date", DateTime, default=func.now(), nullable=False),
 )
 
-# databases query builder
-database = Database(DATABASE_URL)
+# sessionmaker version
+async_session = sessionmaker(
+    engine, expire_on_commit=False, class_=AsyncSession
+)

@@ -1,21 +1,30 @@
+import asyncio
 from fastapi import FastAPI
 
 from app.api import notes, ping
-from app.db import database, engine, metadata
+from app.db import engine, metadata
 
-metadata.create_all(engine)
+
+"""async def async_main():
+    async with engine.begin() as conn:
+        await conn.run_sync(metadata.create_all)
+    
+    await engine.dispose()
+
+asyncio.run(async_main())"""
+
 
 app = FastAPI()
 
 
 @app.on_event("startup")
 async def startup():
-    await database.connect()
+    await engine.connect()
 
 
 @app.on_event("shutdown")
 async def shutdown():
-    await database.disconnect()
+    await engine.dispose()
 
 
 app.include_router(ping.router)
