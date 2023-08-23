@@ -1,18 +1,20 @@
 # Developing and Testing an Asynchronous API with FastAPI and Pytest
 
-## Want to learn how to build this?
+## Interested in learning how to create this yourself? 
 
-Check out the [post](https://testdriven.io/blog/fastapi-crud).
+Dive into the detailed guide in the corresponding [post](https://testdriven.io/blog/fastapi-crud).
 
-## Want to use this project?
+## Eager to utilize this project?
 
-Build the images and run the containers:
+### 1. Build Images and Run Containers:
+Launch the project by executing the command below. This will build necessary images and initiate the containers.
 
 ```sh
 $ docker-compose up -d --build
 ```
 
-Test out the following routes:
+### 2. Test the Functionality:
+Once the setup is complete, take advantage of the following routes to explore and test the functionality:
 
 1. [http://localhost:8002/ping](http://localhost:8002/ping)
 1. [http://localhost:8002/docs](http://localhost:8002/docs)
